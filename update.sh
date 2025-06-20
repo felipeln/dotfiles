@@ -1,7 +1,7 @@
 # update tmux config
 echo "updating 🔃 tmux config"
 
-rsync -avh --delete ~/.tmux/ ~/dotfiles/tmux/
+rsync -avh --delete ~/.tmux ~/dotfiles/tmux/
 
 rsync -avh --delete ~/.tmux.conf ~/dotfiles/tmux/
 
