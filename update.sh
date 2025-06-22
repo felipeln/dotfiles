@@ -24,3 +24,8 @@ echo "updating 🔃 zsh config"
 rsync -avh --delete ~/.zshrc ~/dotfiles/zsh/
 
 echo "setup updated ✅"
+
+#update zellij config
+echo "updating 🔃 Zellij config"
+
+rsync -avh --delete ~/.config/zellij/ ~/dotfiles/zellij
