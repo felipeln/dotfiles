@@ -40,6 +40,6 @@ bindings = [
 
 [keyboard]
 bindings = [
-{key = "f", mods = "Alt|Shift", action = "ToggleFullscreen"},
-{key = "q", mods="Control", action = "Quit"}
+{key = "f", mods = "Alt|Shift", action = "ToggleMaximized"},
+{key = "q", mods="Control|Alt", action = "Quit"}
 ]
