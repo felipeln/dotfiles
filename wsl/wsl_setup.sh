@@ -17,7 +17,6 @@ pacotes=(
   wget
   unzip
   zsh
-  tmux
   nano
   gpg
   openssh-client
@@ -45,14 +44,6 @@ for pacote in "${pacotes[@]}"; do
     echo "✅ $pacote instalado com sucesso."
   fi
 done
-
-# Instalação do Tmux plugin
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-# Configuração do Tmux
-cp .tmux.conf ~/.tmux.conf
-
-
 
 # Exibe resultado final
 if [ -f "$LOG_FILE" ]; then

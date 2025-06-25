@@ -33,107 +33,6 @@ nvm install --lts
 echo "📦 Instalando Bun..."
 curl -fsSL https://bun.sh/install | bash
 
-echo "⚙️  Configurando .zshrc..."
-
-cat > ~/.zshrc << 'EOF'
-# Path to your Oh My Zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-# Theme
-ZSH_THEME="af-magic"
-
-# Plugins
-plugins=(
-  git
-  ssh-agent
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  you-should-use
-  zsh-bat
-  nvm
-  zsh-nvm
-  bun
-)
-
-source $ZSH/oh-my-zsh.sh
-
-# Desativa o som do terminal
-set bell-style none
-
-# Inicia ssh-agent se necessário
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-  eval "$(ssh-agent -s)"
-fi
-
-# Adiciona chave SSH automaticamente
-SSH_KEY="$HOME/.ssh/id_ed25519"
-if [ -f "$SSH_KEY" ]; then
-  ssh-add "$SSH_KEY" 2>/dev/null
-fi
-
-# Aliases
-alias home="cd ~"
-alias ddisk="cd /mnt/d"
-alias notes="ddisk && cd notas/notes"
-
-# Tmux
-alias tmuxnew='tmux new-session -s'
-alias tmuxjoin='tmux attach-session -t'
-alias tmuxls='tmux list-sessions'
-alias tmuxdelete='tmux kill-session -t'
-
-# Atualizar ZSH
-alias src='source ~/.zshrc'
-
-# Git
-alias gs="git status"
-alias gcm="git commit -m"
-alias lm="git checkout main && git pull"
-alias gpp="git pull && git push"
-alias ulc='git reset --soft HEAD~1'
-alias gst="git stash"
-alias pop="git stash pop"
-alias gstapp="git stash apply"
-alias gb="git branch"
-alias gbd="git branch --delete"
-alias gco="git checkout"
-alias gcb="git checkout -b"
-alias gl="git pull"
-alias gp="git push"
-alias gd="git diff"
-alias glog="git log"
-alias glogn="git log --oneline"
-
-# Docker
-alias dockerrm='docker rm $(docker ps -a -q)'
-alias dockerstop='docker stop $(docker ps -a -q)'
-alias dcb="docker compose build"
-alias dcu="docker compose up -d"
-alias dcd="docker compose down"
-
-# npm
-alias nrd="npm run dev"
-alias nrb="npm run build"
-alias ni="npm install"
-alias nu="npm uninstall"
-alias nr="npm run"
-alias nrp="npm run prisma:studio"
-
-# Bun
-alias bx="bunx"
-alias b="bun"
-alias ba="bun add"
-alias bi="bun install"
-alias br="bun run"
-alias bu="bun update"
-alias bre="bun remove"
-alias brd="bun run dev"
-alias brb="bun run build"
-alias bpm="bun pm"
-EOF
-
-echo "✅ .zshrc configurado com sucesso."
-
 echo "🔐 Verificando chave SSH..."
 
 SSH_KEY="$HOME/.ssh/id_ed25519"
@@ -161,5 +60,14 @@ fi
 echo "📥 Iniciando Zsh e carregando .zshrc..."
 exec zsh -c "source ~/.zshrc; exec zsh"
 
+# instalando cargo e zellij
 
-# Instalação do Tmux
+echo "instalando cargo"
+curl https://sh.rustup.rs -sSf | sh
+rustup update
+
+
+echo "instalando zellij"
+cargo install --locked zellij
+
+echo "terminal.sh finalizado"
