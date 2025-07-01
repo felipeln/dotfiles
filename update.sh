@@ -29,3 +29,12 @@ echo "setup updated ✅"
 echo "updating 🔃 Zellij config"
 
 rsync -avh --delete ~/.config/zellij/ ~/dotfiles/zellij
+
+#update vscode
+echo "updating 🔃 VSCode config"
+
+rsync -avh --delete "/mnt/c/users/felipe/AppData/Roaming/Code - Insiders/User/mcp.json" ~/dotfiles/vscode/
+
+rsync -avh --delete "/mnt/c/users/felipe/AppData/Roaming/Code - Insiders/User/settings.json" ~/dotfiles/vscode/
+
+code-insiders --list-extensions >~/dotfiles/vscode/extensions.txt

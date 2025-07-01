@@ -9,51 +9,109 @@ if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 #endregion
 
 # Título do script
-$host.UI.RawUI.WindowTitle = "Instalador de Aplicativos via Winget"
+$host.UI.RawUI.WindowTitle = "Instalador de Aplicativos via Chocolatey"
 
-Write-Host "Verificando se o winget está disponível..." -ForegroundColor Cyan
+Write-Host "Verificando se o Chocolatey está disponível..." -ForegroundColor Cyan
 
-if (-not (Get-Command "winget.exe" -ErrorAction SilentlyContinue)) {
-    Write-Host "ERRO: Winget não encontrado. Verifique se o 'Instalador de Aplicativo' da Microsoft Store está atualizado." -ForegroundColor Red
-    Pause
-    exit
+if (-not (Get-Command "choco.exe" -ErrorAction SilentlyContinue)) {
+    Write-Host "Chocolatey não encontrado. Instalando Chocolatey..." -ForegroundColor Yellow
+    Set-ExecutionPolicy Bypass -Scope Process -Force
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+    if (-not (Get-Command "choco.exe" -ErrorAction SilentlyContinue)) {
+        Write-Host "ERRO: Não foi possível instalar o Chocolatey." -ForegroundColor Red
+        Pause
+        exit
+    }
+    Write-Host "Chocolatey instalado com sucesso!" -ForegroundColor Green
 }
 
-Write-Host "Winget encontrado. Atualizando fontes..." -ForegroundColor Green
-winget source update
+Write-Host "Chocolatey encontrado. Atualizando..." -ForegroundColor Green
+choco upgrade chocolatey -y
 
 Write-Host "`nIniciando a instalação dos aplicativos...`n" -ForegroundColor Cyan
 
-# Lista de IDs dos aplicativos a serem instalados
+# Lista de nomes dos pacotes Chocolatey a serem instalados
 $apps = @(
-    "7zip.7zip",
-    "Anki.Anki",
-    "Discord.Discord",
-    "Git.Git",
-    "VideoLAN.VLC",
-    "Brave.Brave",
-    "Microsoft.VisualStudioCode",
-    "Obsidian.Obsidian",
-    "Telegram.TelegramDesktop",
-    "IvanG.BrowserTamer",
-    "DuongDieuPhap.ImageGlass",
-    "Google.Chrome",
-    "KLSoft.BulkCrapUninstaller",
-    "BleachBit.BleachBit",
-    "Microsoft.WindowsTerminal",
-    "File-New-Project.EarTrumpet",
-    "KDE.Okular",
-    "Alacritty.Alacritty",
-    "calibre.calibre",
-    "Docker.DockerDesktop",
-    "ShareX.ShareX",
-    "WiseCleaner.WiseMemoryOptimizer",
-    "Stremio.Stremio",
-    "Bitwarden.Bitwarden",
-    "Cryptomator.Cryptomator",
-    "HandBrake.HandBrake",
-    "Microsoft.PowerShell"
+    "7zip",
+    "anki",
+    "discord",
+    "steam",
+    "obs-studio.install",
+    "epicgameslauncher",
+    "office-tool"
+    "git",
+    "vlc",
+    "brave",
+    "brave --pre"
+    "vscode-insiders",
+    "obsidian",
+    "super-productivity",
+    "telegram",
+    "browser-tamer",
+    "imageglass",
+    "googlechrome",
+    "bulk-crap-uninstaller",
+    "bleachbit",
+    "microsoft-windows-terminal",
+    "eartrumpet",
+    "alacritty",
+    "calibre",
+    "docker-desktop",
+    "sharex",
+    "stremio",
+    "bitwarden",
+    "cryptomator",
+    "handbrake",
+    "powershell",
+    "nodejs",
+    "bun",
+    "deno",
+    "python",
+    "golang",
+    "rust",
+    "mongodb-compass"
 )
+$dev = @(
+    "git",
+    "brave",
+    "vscode-insiders",
+    "microsoft-windows-terminal",
+    "eartrumpet",
+    "alacritty",
+    "docker-desktop",
+    "powershell",
+    "nodejs",
+    "bun",
+    "deno",
+    "python",
+    "golang",
+    "rust",
+    "mongodb-compass"
+)
+
+# Menu de seleção
+Write-Host "Selecione o tipo de instalação:" -ForegroundColor Cyan
+Write-Host "[1] Full Apps (aplicativos de desenvolvimento)" -ForegroundColor Yellow
+Write-Host "[2] Dev Apps (todos os aplicativos)" -ForegroundColor Yellow
+
+$opcao = Read-Host "Digite 1 ou 2 e pressione Enter"
+
+switch ($opcao) {
+    '1' {
+        Write-Host "\nVocê selecionou: Full Apps" -ForegroundColor Green
+        $listaParaInstalar = $apps
+    }
+    '2' {
+        Write-Host "\nVocê selecionou: Dev Apps" -ForegroundColor Green
+        $listaParaInstalar = $dev
+    }
+    default {
+        Write-Host "Opção inválida. Saindo..." -ForegroundColor Red
+        Pause
+        exit
+    }
+}
 
 # Contadores para o resumo
 $sucesso = 0
@@ -61,15 +119,14 @@ $falha = 0
 $falhasLista = @()
 
 # Instalação de cada app
-foreach ($app in $apps) {
+foreach ($app in $listaParaInstalar) {
     Write-Host "--------------------------------------------------"
     Write-Host "Tentando instalar: $app" -ForegroundColor Yellow
-    
+
     # Executa o comando de instalação
-    winget install --id $app --silent --accept-package-agreements --accept-source-agreements
-    
+    choco install $app -y --no-progress
+
     # Verifica se o último comando foi executado com sucesso
-    # $LASTEXITCODE é 0 para sucesso para a maioria dos comandos externos.
     if ($LASTEXITCODE -eq 0) {
         Write-Host "SUCESSO: $app foi instalado." -ForegroundColor Green
         $sucesso++
@@ -92,7 +149,7 @@ if ($falha -gt 0) {
     foreach ($appFalho in $falhasLista) {
         Write-Host " - $appFalho"
     }
-    Write-Host "`nVerifique se os IDs estão corretos com o comando 'winget search <nome_do_app>'."
+    Write-Host "`nVerifique se os nomes dos pacotes estão corretos com o comando 'choco search <nome_do_app>'."
 }
 
 Pause

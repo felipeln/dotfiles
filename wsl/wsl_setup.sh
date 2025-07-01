@@ -1,8 +1,9 @@
 #!/bin/bash
 
-set -e  # Encerra o script em caso de erro
+set -e # Encerra o script em caso de erro
 
 LOG_FILE="wsl_setup.log"
+>"$LOG_FILE" # Limpa o log no início
 
 echo "🔄 Atualizando pacotes..."
 sudo apt update && sudo apt upgrade -y
@@ -39,7 +40,7 @@ for pacote in "${pacotes[@]}"; do
   echo "🔧 Instalando pacote: $pacote"
   if ! sudo apt install -y "$pacote"; then
     echo "❌ Falha ao instalar o pacote: $pacote"
-    echo "$pacote" >> "$LOG_FILE"
+    echo "$pacote" >>"$LOG_FILE"
   else
     echo "✅ $pacote instalado com sucesso."
   fi
@@ -51,4 +52,3 @@ if [ -f "$LOG_FILE" ]; then
 else
   echo "✅ Todos os pacotes foram instalados com sucesso."
 fi
-

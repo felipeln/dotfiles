@@ -12,20 +12,34 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
-echo "🔌 Instalando plugins do Zsh..."
+# Função para clonar plugin se não existir
+clone_plugin() {
+  local repo="$1"
+  local dest="$2"
+  if [ ! -d "$dest" ]; then
+    git clone "$repo" "$dest"
+  else
+    echo "✔️  Plugin já existe: $dest"
+  fi
+}
 
-git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM}/plugins/zsh-autosuggestions"
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting"
-git clone https://github.com/MichaelAquilina/zsh-you-should-use.git "${ZSH_CUSTOM}/plugins/you-should-use"
-git clone https://github.com/fdellwing/zsh-bat.git "${ZSH_CUSTOM}/plugins/zsh-bat"
-git clone https://github.com/lukechilds/zsh-nvm "${ZSH_CUSTOM}/plugins/zsh-nvm"
+echo "🔌 Instalando plugins do Zsh..."
+clone_plugin https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM}/plugins/zsh-autosuggestions"
+clone_plugin https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting"
+clone_plugin https://github.com/MichaelAquilina/zsh-you-should-use.git "${ZSH_CUSTOM}/plugins/you-should-use"
+clone_plugin https://github.com/fdellwing/zsh-bat.git "${ZSH_CUSTOM}/plugins/zsh-bat"
+clone_plugin https://github.com/lukechilds/zsh-nvm "${ZSH_CUSTOM}/plugins/zsh-nvm"
 
 echo "📥 Instalando NVM (Node Version Manager)..."
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
 # Garante que o NVM esteja carregado
 export NVM_DIR="$HOME/.nvm"
-source "$NVM_DIR/nvm.sh"
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  source "$NVM_DIR/nvm.sh"
+else
+  echo "❌ NVM não encontrado!" >&2
+fi
 
 echo "📦 Instalando Node.js via NVM..."
 nvm install --lts
@@ -53,19 +67,24 @@ ssh-add "$SSH_KEY"
 # Troca shell padrão para Zsh se ainda não for
 if [ "$SHELL" != "$(which zsh)" ]; then
   echo "🔁 Mudando shell padrão para Zsh..."
-  chsh -s "$(which zsh)"
+  if ! chsh -s "$(which zsh)"; then
+    echo "⚠️  Falha ao mudar shell padrão. Execute manualmente se necessário."
+  fi
 fi
 
 # Executa o Zsh com o .zshrc carregado
-echo "📥 Iniciando Zsh e carregando .zshrc..."
-exec zsh -c "source ~/.zshrc; exec zsh"
+if command -v zsh >/dev/null 2>&1; then
+  echo "📥 Iniciando Zsh e carregando .zshrc..."
+  exec zsh -l
+else
+  echo "❌ Zsh não encontrado para execução final."
+fi
 
 # instalando cargo e zellij
 
 echo "instalando cargo"
 curl https://sh.rustup.rs -sSf | sh
 rustup update
-
 
 echo "instalando zellij"
 cargo install --locked zellij

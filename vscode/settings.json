@@ -1,0 +1,138 @@
+{
+    "security.allowedUNCHosts": [
+        "wsl.localhost"
+    ],
+
+    // ----EDITOR----
+  "editor.autoClosingBrackets": "always", // Fecha automaticamente colchetes, chaves e parênteses
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true, // Cores únicas para cada tipo de par de colchetes
+  "editor.definitionLinkOpensInPeek": true, // Mostra definições em visualização lateral
+  "editor.emptySelectionClipboard": false, // Não permite copiar sem seleção
+  "editor.experimentalWhitespaceRendering": "off", // Desativa renderização experimental de espaços
+  "editor.fastScrollSensitivity": 4, // Sensibilidade de rolagem rápida
+  "editor.foldingMaximumRegions": 500, // Limite de regiões dobráveis
+  "editor.gotoLocation.alternativeTypeDefinitionCommand": "editor.action.goToImplementation", // Atalho alternativo para ir para implementação
+  "editor.gotoLocation.multipleDeclarations": "gotoAndPeek", // Vai para e visualiza múltiplas declarações
+  "editor.guides.bracketPairs": true, // Mostra guias coloridas para pares de colchetes
+  "editor.inlayHints.padding": true, // Adiciona padding às dicas inline
+  "editor.mouseWheelScrollSensitivity": 1.1, // Velocidade de rolagem com mouse
+  "editor.multiCursorLimit": 50000, // Limite de cursores múltiplos
+  "editor.padding.bottom": 1, // Espaçamento inferior do editor
+  "editor.padding.top": 1, // Espaçamento superior do editor
+  "editor.tabCompletion": "on", // Ativa preenchimento automático com tab
+  "editor.stickyTabStops": true, // Mantém tabulações consistentes
+  "editor.unfoldOnClickAfterEndOfLine": true, // Expande código ao clicar após o final da linha
+  "editor.unicodeHighlight.nonBasicASCII": false, // Não destaca caracteres Unicode não básicos
+  "editor.wrappingIndent": "indent", // Indentação para linhas quebradas
+  "editor.fontWeight": "normal", // Peso da fonte do editor
+  "editor.fontFamily": "'JetBrains Mono', Consolas, 'Courier New', monospace", // define a font jetbrains mono
+  "editor.fontLigatures": true,
+  "editor.formatOnPaste": true, // Formata texto colado automaticamente
+  "editor.inlineSuggest.showToolbar": "always", // Mostra barra de ferramentas para sugestões inline
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "on",
+    "strings": "on"
+  }, // Ativa sugestões rápidas em todos os contextos
+  "editor.quickSuggestionsDelay": 3, // Atraso de 3 segundos para sugestões rápidas
+  "editor.screenReaderAnnounceInlineSuggestion": false, // Não anuncia sugestões inline para leitores de tela
+  "editor.suggest.filterGraceful": false, // Filtra sugestões de forma rígida
+  "editor.suggest.matchOnWordStartOnly": false, // Permite correspondência em qualquer parte da palavra
+  "editor.suggest.preview": true, // Preview de seleção de sugestões
+  "editor.suggest.shareSuggestSelections": true, // Compartilha seleção entre sessões
+  "editor.suggestSelection": "first", // Seleciona primeira sugestão por padrão
+  "editor.mouseWheelZoom": false, // Desativa zoom com roda do mouse
+  "editor.defaultFormatter": null, // Não define formatador padrão global
+  "editor.minimap.scale": 1, // Escala do minimap
+  "editor.accessibilityPageSize": 1, // Número de linhas para navegação acessível
+  "editor.accessibilitySupport": "off", // Desativa suporte a acessibilidade
+  // ----WORKBENCH----
+  "workbench.startupEditor": "none", // Não abre editor na inicialização
+  "workbench.commandPalette.experimental.suggestCommands": true, // Sugere comandos no palet
+  "workbench.commandPalette.history": 50000, // Histórico longo de comandos
+  "workbench.commandPalette.preserveInput": true, // Mantém entrada após executar comando
+  "workbench.enableExperiments": false, // Desativa experimentos
+  "workbench.experimental.share.enabled": true, // Ativa compartilhamento experimental
+  "workbench.list.fastScrollSensitivity": 6, // Sensibilidade alta para rolagem rápida
+  "workbench.list.scrollByPage": true, // Rola página inteira
+  "workbench.list.smoothScrolling": true, // Rolagem suave
+  "workbench.localHistory.maxFileEntries": 5000, // Limite de entradas no histórico local
+  "workbench.localHistory.maxFileSize": 8192, // Tamanho máximo para arquivos no histórico
+  "workbench.reduceMotion": "on", // Reduz movimentos para acessibilidade
+  "workbench.tips.enabled": false, // Desativa dicas de uso
+  "workbench.tree.enableStickyScroll": true, // Rolagem fixa para árvore de arquivos
+  "workbench.editor.autoLockGroups": {
+    "terminalEditor": false
+  }, // Não trava grupos automaticamente
+  "workbench.editor.limit.enabled": false, // Desativa limite de editores
+  "workbench.settings.enableNaturalLanguageSearch": false, // Desativa busca por linguagem natural
+  "workbench.editor.wrapTabs": true, // Quebra abas se não couberem
+  "workbench.editor.limit.value": 10000, // Limite alto para editores
+  "workbench.editor.pinnedTabsOnSeparateRow": true, // Abas fixas em linha separada
+  "workbench.editor.sharedViewState": true, // Localiza barra de atividades no topo UI
+  "workbench.editor.highlightModifiedTabs": true, // Destaca abas modificadas
+  // ----MISC----
+  "window.menuBarVisibility": "compact", // Barra de menu compacta
+  "prettier.resolveGlobalModules": true, // Resolve módulos globais para Prettier
+  "clipboard-manager.snippet.enabled": false, // Desativa snippet no clipboard
+  "luna.retainContextWhenHidden": false, // Não mantém contexto ao ocultar
+  "diffEditor.experimental.showMoves": true, // Mostra movimentos em diffs
+  "diffEditor.hideUnchangedRegions.enabled": true, // Oculta regiões inalteradas
+  "diffEditor.hideUnchangedRegions.minimumLineCount": 1, // Linha mínima para ocultar
+  "diffEditor.maxComputationTime": 0, // Sem limite de tempo para diffs
+  "diffEditor.maxFileSize": 0, // Sem limite de tamanho para diffs
+  "multiDiffEditor.experimental.enabled": true, // Ativa diff editor experimental
+  "material-icon-theme.files.color": "#26a69a", // Cor personalizada para ícones
+  "cmake.showOptionsMovedNotification": false, // Oculta notificação de opções movidas
+  "window.zoomLevel": 0.4, // muda o zoom na interface
+  "editor.wordWrap": "on", // ativa a quebra de linha
+  // ----EXTENSIONS----
+  "extensions.autoUpdate": false,
+  "workbench.preferredDarkColorTheme": "Default Dark+",
+
+  // ----BIOME JS----
+
+  "editor.formatOnSave": true, // Opcional: Formatar ao salvar. Muito recomendado!
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit" // Opcional: Para auto-fix de linting errors também
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascriptreact]": { // Para JSX
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": { // Para TSX
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": { // Para JSON com comentários (ex: tsconfig.json)
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[graphql]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "workbench.colorTheme": "Community Material Theme Darker High Contrast",
+  "explorer.confirmDragAndDrop": false,
+  "terminal.integrated.inheritEnv": false,
+  "roo-cline.allowedCommands": [
+    "npm test",
+    "npm install",
+    "tsc",
+    "git log",
+    "git diff",
+    "git show"
+  ]
+
+}

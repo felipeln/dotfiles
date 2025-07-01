@@ -53,44 +53,22 @@ alias tmuxdelete='tmux kill-session -t'
 alias src='source ~/.zshrc'
 
 # Git
-alias gs="git status"
-alias gcm="git commit -m"
-alias lm="git checkout main && git pull"
-alias gpp="git pull && git push"
-alias ulc='git reset --soft HEAD~1'
-alias gst="git stash"
-alias pop="git stash pop"
-alias gstapp="git stash apply"
-alias gb="git branch"
-alias gbd="git branch --delete"
-alias gckt="git checkout"
-alias gst="git switch"
-alias gl="git pull"
-alias gp="git push"
-alias gd="git diff"
-alias glog="git log"
-alias glogn="git log --oneline"
+alias g="git"
+alias gst="git status";
+alias gp="git push";
+alias gd="git diff";
+alias gc="git commit -m";
+alias gac="git add .; git commit -m";
+alias gaa="git add .";
+alias gbr="git branch";
+alias gco="git checkout";
+alias gpl="git pull";
+alias gcm="git checkout main";
 
 # github cli
 alias ghnew="gh repo create"
-alias ghcl="gh repo clone"
-alias ghrpls="gh repo list"
-alias ghils="gh issue list"
-alias ghinew="gh issue create"
-alias ghic="gh issue close"
-alias ghprnew="gh pr create"
-alias ghprls="gh pr list"
-alias ghprv="gh pr view"
-alias ghprc="gh pr checkout"
-alias ghprm="gh pr merge"
-alias ghprr"gh pr review"
-alias ghgnew="gh gist create"
-alias ghgls="gh gist list"
-alias ghgv="gh gist view"
-alias ghrls="gh run list"
-alias ghrv="gh run view"
-alias ghrw="gh run watch"
-alias ghwls="gh workflow list"
+alias ghclone="gh repo clone"
+alias ghlist="gh repo list"
 
 # Docker
 alias dockerrm='docker rm $(docker ps -a -q)'
