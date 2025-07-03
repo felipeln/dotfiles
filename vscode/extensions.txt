@@ -5,6 +5,7 @@ bradlc.vscode-tailwindcss
 charliermarsh.ruff
 christian-kohler.path-intellisense
 cliffordfajardo.highlight-line-vscode
+davidanson.vscode-markdownlint
 donjayamanne.githistory
 eamodio.gitlens
 fisheva.eva-theme
@@ -40,6 +41,7 @@ roscop.activefileinstatusbar
 rust-lang.rust-analyzer
 shardulm94.trailing-spaces
 sleistner.vscode-fileutils
+tomoki1207.pdf
 tyriar.luna-paint
 usernamehw.errorlens
 usernamehw.indent-one-space
@@ -47,4 +49,5 @@ visualstudioexptteam.intellicode-api-usage-examples
 visualstudioexptteam.vscodeintellicode
 visualstudioexptteam.vscodeintellicode-completions
 vue.volar
+wakatime.vscode-wakatime
 wix.vscode-import-cost

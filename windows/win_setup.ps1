@@ -92,8 +92,8 @@ $dev = @(
 
 # Menu de seleção
 Write-Host "Selecione o tipo de instalação:" -ForegroundColor Cyan
-Write-Host "[1] Full Apps (aplicativos de desenvolvimento)" -ForegroundColor Yellow
-Write-Host "[2] Dev Apps (todos os aplicativos)" -ForegroundColor Yellow
+Write-Host "[1] Full Apps (Todos os aplicativos)" -ForegroundColor Yellow
+Write-Host "[2] Dev Apps (Aplicativos de desenvolvimento)" -ForegroundColor Yellow
 
 $opcao = Read-Host "Digite 1 ou 2 e pressione Enter"
 
